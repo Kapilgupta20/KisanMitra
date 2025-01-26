@@ -1,7 +1,13 @@
 import React from "react";
-
+import RegisterCmp from "../components/registercmp.jsx";
 const Register = () => {
-    return <div>Register Page</div>;
+    return (
+    <>
+        <div>
+            <RegisterCmp/>
+        </div>;
+    </>
+    );
 };
 
 export default Register;
