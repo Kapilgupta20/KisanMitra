@@ -5,6 +5,9 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Fdash from "./pages/Fdash/index.jsx";
 import Bdash from "./pages/Bdash/index.jsx";
+import NotFound from "./pages/error.jsx";
+import Helpdesk from "./pages/HelpDesk.jsx";
+
 
 function App() {
   return (
@@ -16,6 +19,8 @@ function App() {
         <Route path="/Register" element={<Register />} />
         <Route path="/FDashboard" element={<Fdash />} />
         <Route path="/BDashboard" element={<Bdash />} />
+        <Route path="/Helpdesk" element={<Helpdesk/>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   )
