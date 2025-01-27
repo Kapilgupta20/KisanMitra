@@ -33,6 +33,14 @@ const HeaderCmp = () => {
             </li>
             <li>
               <Link
+                to="/helpdesk"
+                className="hover:text-[#A8CBB5] transition-colors"
+              >
+                Helpdesk
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/signin"
                 className="px-4 py-2 bg-[#2A2A2A] text-white rounded-md hover:bg-[#A8CBB5] transition-colors"
               >
