@@ -4,6 +4,7 @@ import About from "./pages/About.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import NotFound from "./pages/error.jsx";
+import Helpdesk from "./pages/HelpDesk.jsx";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register/>} />
+        <Route path="/Helpdesk" element={<Helpdesk/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

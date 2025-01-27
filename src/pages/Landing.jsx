@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import FooterCmp from "../components/footercmp.jsx";
 import HeaderCmp from "../components/headercmp.jsx";
+import ContactForm from "../components/contactcmp.jsx";
 
 const Landing = () => {
     const navigate = useNavigate();
