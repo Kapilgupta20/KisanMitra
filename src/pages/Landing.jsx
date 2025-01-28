@@ -18,12 +18,6 @@ const Landing = () => {
                 >
                     Get Started
                 </button>
-                <button
-                    className="px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
-                    onClick={() => navigate("/about")}
-                >
-                    About Us
-                </button>
             </div>
 
             {/* Footer */}

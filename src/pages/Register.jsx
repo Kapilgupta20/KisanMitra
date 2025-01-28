@@ -3,6 +3,57 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, X } from 'lucide-react'; // Import the X (cross) icon from lucide-react
 
+const statesAndUTs = [
+  'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh',
+  'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland',
+  'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttarakhand', 'Uttar Pradesh',
+  'West Bengal', 'Andaman and Nicobar Islands', 'Chandigarh', 'Dadra and Nagar Haveli and Daman and Diu', 'Lakshadweep',
+  'Delhi', 'Puducherry', 'Ladakh', 'Lakshadweep', 'Jammu and Kashmir'
+];
+
+// Mapping of states to their respective cities (for demo purposes, add more cities as required)
+const citiesByState = {
+  'Andhra Pradesh': ['Hyderabad', 'Visakhapatnam', 'Vijayawada'],
+  'Arunachal Pradesh': ['Itanagar', 'Tawang', 'Ziro'],
+  'Assam': ['Guwahati', 'Dibrugarh', 'Jorhat'],
+  'Bihar': ['Patna', 'Gaya', 'Bhagalpur'],
+  'Chhattisgarh': ['Raipur', 'Bilaspur', 'Durg'],
+  'Goa': ['Panaji', 'Margao', 'Vasco da Gama'],
+  'Gujarat': ['Ahmedabad', 'Surat', 'Vadodara'],
+  'Haryana': ['Chandigarh', 'Gurugram', 'Faridabad'],
+  'Himachal Pradesh': ['Shimla', 'Manali', 'Kullu'],
+  'Jharkhand': ['Ranchi', 'Jamshedpur', 'Dhanbad'],
+  'Karnataka': ['Bengaluru', 'Mysuru', 'Mangalore'],
+  'Kerala': ['Thiruvananthapuram', 'Kochi', 'Kozhikode'],
+  'Madhya Pradesh': ['Bhopal', 'Indore', 'Gwalior'],
+  'Maharashtra': ['Mumbai', 'Pune', 'Nagpur'],
+  'Manipur': ['Imphal', 'Churachandpur', 'Thoubal'],
+  'Meghalaya': ['Shillong', 'Tura', 'Jowai'],
+  'Mizoram': ['Aizawl', 'Lunglei', 'Champhai'],
+  'Nagaland': ['Kohima', 'Dimapur', 'Mokokchung'],
+  'Odisha': ['Bhubaneswar', 'Cuttack', 'Berhampur'],
+  'Punjab': ['Chandigarh', 'Amritsar', 'Ludhiana'],
+  'Rajasthan': ['Jaipur', 'Udaipur', 'Jodhpur'],
+  'Sikkim': ['Gangtok', 'Pakyong', 'Namchi'],
+  'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai'],
+  'Telangana': ['Hyderabad', 'Warangal', 'Khammam'],
+  'Tripura': ['Agartala', 'Udaipur', 'Dharmanagar'],
+  'Uttarakhand': ['Dehradun', 'Nainital', 'Haridwar'],
+  'Uttar Pradesh': ['Lucknow', 'Kanpur', 'Varanasi'],
+  'West Bengal': ['Kolkata', 'Darjeeling', 'Siliguri'],
+  
+  // Union Territories
+  'Andaman and Nicobar Islands': ['Port Blair', 'Havelock Island', 'Diglipur'],
+  'Chandigarh': ['Chandigarh'],
+  'Dadra and Nagar Haveli and Daman and Diu': ['Daman', 'Diu', 'Silvassa'],
+  'Lakshadweep': ['Kavaratti', 'Agatti', 'Minicoy'],
+  'Delhi': ['New Delhi', 'Dwarka', 'Lajpat Nagar'],
+  'Puducherry': ['Puducherry', 'Auroville', 'Karai Kal'],
+  'Ladakh': ['Leh', 'Kargil', 'Nubra Valley'],
+  'Jammu and Kashmir': ['Srinagar', 'Jammu', 'Leh'],
+};
+
+
 const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -17,10 +68,23 @@ const Register = () => {
   });
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [cities, setCities] = useState([]);  // State to hold cities based on selected state
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    setFormData({ ...formData, state: selectedState, city: '' });
+
+    // Update the cities based on selected state
+    if (citiesByState[selectedState]) {
+      setCities(citiesByState[selectedState]);
+    } else {
+      setCities([]); // Clear cities if no matching state found
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -53,7 +117,7 @@ const Register = () => {
       <div className="absolute top-4 left-4 text-gray-700 cursor-pointer" onClick={() => navigate('/home')}>
         <X size={24} />
       </div>
-      
+
       <div className="flex flex-1 items-center justify-center px-4 py-6">
         <div className="w-full max-w-5xl bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-bold text-center text-[#2A2A2A] mb-6">Register</h2>
@@ -160,32 +224,46 @@ const Register = () => {
                 </select>
               </div>
               <div className="mb-4">
-                <label htmlFor="city" className="block text-sm font-medium text-[#2A2A2A]">
-                  City
-                </label>
-                <input
-                  type="text"
-                  id="city"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-[#A8CBB5] focus:border-[#A8CBB5]"
-                  required
-                />
-              </div>
-              <div className="mb-4">
                 <label htmlFor="state" className="block text-sm font-medium text-[#2A2A2A]">
                   State
                 </label>
-                <input
-                  type="text"
-                  id="state"
+                <select
                   name="state"
                   value={formData.state}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-[#A8CBB5] focus:border-[#A8CBB5]"
+                  onChange={handleStateChange}
+                  className="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm focus:ring-[#A8CBB5] focus:border-[#A8CBB5]"
                   required
-                />
+                >
+                  <option value="" disabled>
+                    Select State
+                  </option>
+                  {statesAndUTs.map((state, index) => (
+                    <option key={index} value={state}>
+                      {state}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="mb-4">
+                <label htmlFor="city" className="block text-sm font-medium text-[#2A2A2A]">
+                  City
+                </label>
+                <select
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  className="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm focus:ring-[#A8CBB5] focus:border-[#A8CBB5]"
+                  required
+                >
+                  <option value="" disabled>
+                    Select City
+                  </option>
+                  {cities.map((city, index) => (
+                    <option key={index} value={city}>
+                      {city}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="mb-4">
                 <label htmlFor="pincode" className="block text-sm font-medium text-[#2A2A2A]">
@@ -202,23 +280,13 @@ const Register = () => {
                 />
               </div>
             </div>
-
             <button
               type="submit"
-              className="w-full bg-[#2A2A2A] text-white py-2 px-4 rounded-md hover:bg-[#A8CBB5] transition-colors focus:outline-none cursor-pointer mt-4"
+              className="w-full bg-[#2A2A2A] text-white py-2 rounded-md hover:bg-[#A8CBB5]"
             >
               Register
             </button>
           </form>
-          <p className="mt-6 text-center text-[#2A2A2A]">
-            Have an account?{' '}
-            <button
-              className="text-[#A8CBB5] hover:underline cursor-pointer"
-              onClick={() => navigate('/login')}
-            >
-              Login Here!
-            </button>
-          </p>
         </div>
       </div>
     </div>
