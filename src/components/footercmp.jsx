@@ -8,11 +8,9 @@ const FooterCmp = () => {
     <footer className="bg-[#D1E8D0] text-[#2A2A2A]">
       <div className="max-w-6xl mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo and description */}
           <div className="mb-8 md:mb-0">
 
           <div className="mb-8 md:mb-0 flex items-center">
-            {/* SVG Icon from assets */}
             <img src={sproutLogo} alt="KisanMitra Logo" className="h-8 w-8 mr-2" />
             <h2 className="text-2xl font-bold text-[#2A2A2A]">KisanMitra</h2>
           </div>
@@ -22,7 +20,6 @@ const FooterCmp = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-[#2A2A2A]">Quick Links</h3>
             <ul className="space-y-2">
@@ -61,7 +58,6 @@ const FooterCmp = () => {
             </ul>
           </div>
 
-          {/* Legal Section */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-[#2A2A2A]">Legal</h3>
             <ul className="space-y-2">
@@ -84,7 +80,6 @@ const FooterCmp = () => {
             </ul>
           </div>
 
-          {/* Social Media Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-[#2A2A2A]">Follow Us</h3>
             <div className="flex space-x-4">
@@ -108,7 +103,6 @@ const FooterCmp = () => {
           </div>
         </div>
 
-        {/* Copyright */}
         <div className="border-t border-[#A8CBB5] mt-8 pt-8 text-sm text-center text-[#555]">
           <p>
             &copy; {new Date().getFullYear()} Your Company Name. All rights

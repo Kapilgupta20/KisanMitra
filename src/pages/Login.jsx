@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, X } from 'lucide-react'; // Import cross icon from lucide-react
+import { Eye, EyeOff, X } from 'lucide-react'; 
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +43,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-[#D1E8D0] flex flex-col">
       <div className="flex justify-between p-4">
-        <button onClick={() => navigate('/home')} className="text-[#2A2A2A]">
+        <button onClick={() => navigate('/home')} className="text-[#2A2A2A] cursor-pointer">
           <X size={24} />
         </button>
       </div>
@@ -89,7 +89,7 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-3 flex items-center text-[#2A2A2A] focus:outline-none"
+                  className="absolute inset-y-0 right-3 flex items-center text-[#2A2A2A] focus:outline-none cursor-pointer"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
