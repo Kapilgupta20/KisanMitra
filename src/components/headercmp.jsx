@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
 import sproutLogo from '../assets/sprout.svg';
 
 const HeaderCmp = () => {
-  const navigate = useNavigate();
 
   return (
     <header className="bg-[#D1E8D0] text-[#2A2A2A]">
