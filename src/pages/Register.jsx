@@ -33,7 +33,7 @@ const citiesByState = {
   'Nagaland': ['Kohima', 'Dimapur', 'Mokokchung'],
   'Odisha': ['Bhubaneswar', 'Cuttack', 'Berhampur'],
   'Punjab': ['Chandigarh', 'Amritsar', 'Ludhiana'],
-  'Rajasthan': ['Jaipur', 'Udaipur', 'Jodhpur'],
+  'Rajasthan': ['Jaipur', 'Udaipur', 'Kota'],
   'Sikkim': ['Gangtok', 'Pakyong', 'Namchi'],
   'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai'],
   'Telangana': ['Hyderabad', 'Warangal', 'Khammam'],
@@ -41,8 +41,6 @@ const citiesByState = {
   'Uttarakhand': ['Dehradun', 'Nainital', 'Haridwar'],
   'Uttar Pradesh': ['Lucknow', 'Kanpur', 'Varanasi'],
   'West Bengal': ['Kolkata', 'Darjeeling', 'Siliguri'],
-  
-  // Union Territories
   'Andaman and Nicobar Islands': ['Port Blair', 'Havelock Island', 'Diglipur'],
   'Chandigarh': ['Chandigarh'],
   'Dadra and Nagar Haveli and Daman and Diu': ['Daman', 'Diu', 'Silvassa'],
@@ -288,6 +286,15 @@ const Register = () => {
               Register
             </button>
           </form>
+          <p className="mt-4 text-center text-[#2A2A2A]">
+            Already created an Account!{' '}
+            <button
+              className="text-[#A8CBB5] hover:underline cursor-pointer"
+              onClick={() => navigate('/login')}
+            >
+              Login Here!
+            </button>
+          </p>
         </div>
       </div>
     </div>

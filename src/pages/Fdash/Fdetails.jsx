@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Header from './components/header';
+import Sidebar from './components/SideBar';
 
 const Fdetails = () => {
   const [user, setUser] = useState(null);
@@ -10,11 +11,11 @@ const Fdetails = () => {
 
   const fetchIdDetails = async () => {
     const token = localStorage.getItem('token');
-    if (!token) {
+    const email = localStorage.getItem('email');
+    if (!token || !email) {
       navigate('/login');
       return;
     }
-    const email = localStorage.getItem('email');
     try {
       const response = await axios.post('http://localhost:8000/user/iddetails', { email: email }, {
         headers: {
@@ -41,6 +42,7 @@ const Fdetails = () => {
   return (
     <div>
       <Header />
+      <Sidebar />
       <h2>Dashboard</h2>
       {user && (
         <div>
