@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Header from './components/header';
 
-const Fdash = () => {
+const Fdetails = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -53,4 +53,4 @@ const Fdash = () => {
   );
 };
 
-export default Fdash;
+export default Fdetails;
