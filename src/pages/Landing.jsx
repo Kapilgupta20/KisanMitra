@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import FooterCmp from "../components/footercmp.jsx";
 import HeaderCmp from "../components/headercmp.jsx";
-import ContactForm from "../components/contactcmp.jsx";
+// import svgSprout from "../assets/sprout.svg.jsx";
 
 const Landing = () => {
     const navigate = useNavigate();
@@ -11,9 +11,7 @@ const Landing = () => {
         <div className="flex flex-col min-h-screen bg-[#D1E8D0]">
             <HeaderCmp />
             
-            {/* Main Content */}
             <div className="flex-grow flex flex-col items-center justify-center text-center px-6">
-                {/* Logo Placeholder */}
                 <div className="mb-6">
                     <img src="/logo.png" alt="KisanMitra Logo" className="w-24 h-24" />
                 </div>
@@ -25,7 +23,6 @@ const Landing = () => {
                     Join us today and be a part of the future of agriculture!
                 </p>
                 
-                {/* Buttons */}
                 <div className="flex gap-4">
                     <button
                         className="px-6 py-2 text-white bg-[#2A2A2A] rounded-lg hover:bg-[#A8CBB5] transition-colors"
