@@ -33,7 +33,7 @@ const Header = () => {
     <header className="bg-[#D1E8D0] text-[#2A2A2A]">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
-          <img src={sproutLogo} alt="KisanMitra Logo" className="h</header>-8 w-8 mr-2" />
+          <img src={sproutLogo} alt="KisanMitra Logo" className="h-8 w-8 mr-2" />
           <Link to="/FDashboard" className="text-2xl font-bold text-[#2A2A2A]">KisanMitra</Link>
         </div>
 
@@ -41,7 +41,7 @@ const Header = () => {
           <div ref={dropdownRef} className="relative inline-block text-left">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md transition"
+              className="flex items-center px-4 py-2 text-white bg-[#2A2A2A] hover:bg-[#8AAE97] rounded-md shadow-md transition duration-200 ease-in-out"
             >
               <User className="w-5 h-5 mr-2" />
               <span>User</span>

@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Header from './components/header';
-import Sidebar from './components/SideBar';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "./components/Header";
+import Sidebar from "./components/SideBar";
+import Weather from "./components/weathercmp";
 
 const Fdashboard = () => {
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-
-  
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   return (
-    <div>
+    <>
       <Header />
-      <Sidebar/>
-    </div>
+      <div className="flex min-h-screen">
+        {/* Sidebar */}
+        <Sidebar />
+
+        {/* Main Content - Weather Component */}
+        <div className="flex-1 p-8">
+          <Weather />
+        </div>
+      </div>
+    </>
   );
 };
 
