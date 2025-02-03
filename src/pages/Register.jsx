@@ -98,6 +98,7 @@ const Register = () => {
       console.log('Registration successful:', response.data);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('email', formData.email);
+      localStorage.setItem('role', response.data.role);
       if (formData.role === 'farmer') {
         navigate('/FDashboard');
       } else if (formData.role === 'buyer') {

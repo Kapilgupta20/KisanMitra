@@ -26,6 +26,7 @@ const Header = () => {
   const handleSignOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
+    localStorage.removeItem("role");
   };
 
   return (

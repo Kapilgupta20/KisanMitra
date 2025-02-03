@@ -27,6 +27,7 @@ const Login = () => {
       console.log('Login successful:', response.data);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('email', formData.email);
+      localStorage.setItem('role', response.data.role);
       if (response.data.role === 'farmer') {
         navigate('/FDashboard');
       } else if (response.data.role === 'buyer') {
