@@ -10,6 +10,7 @@ import Helpdesk from "./pages/HelpDesk.jsx";
 import Fdetails from "./pages/Fdash/fdetails.jsx";
 import Listings from "./pages/Fdash/listings.jsx";
 import Bdetails from "./pages/Bdash/Bdetails.jsx";
+import Marketplace from "./pages/Bdash/marketplace.jsx";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/Fdashboard/listings" element={<Listings/>} />
         <Route path="/Bdashboard" element={<Bdash />} />
         <Route path="/Bdashboard/info" element={<Bdetails/>} />
+        <Route path="/Bdashboard/marketplace" element={<Marketplace />}/>
         <Route path="/Helpdesk" element={<Helpdesk/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
