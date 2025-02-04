@@ -103,6 +103,30 @@ const Listings = () => {
         }
     };
 
+    const handleDelete = async (id) => {
+        const token = localStorage.getItem('token');
+        const email = localStorage.getItem('email');
+        if(!token || !email) {
+            navigate('/login');
+            return;
+        };
+        const isConfirmed = window.confirm("Are you sure you want to delete this item?");
+        if (!isConfirmed) {
+            return;
+        };
+        try {
+            const response = await axios.post('http://localhost:8000/fdashboard/listings/view/delete', { listingId: id, email }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+            setdata(data.filter((item) => item._id !== id));
+            // fetchlistings();
+        } catch (err) {
+            setError("Failed to delete listing. Please try again.");
+        }
+    };
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -121,7 +145,7 @@ const Listings = () => {
                     {data && (
                         <div className="flex flex-wrap justify-center">
                             {data.map((item) => (
-                                <Listcard key={item._id} item={item} />
+                                <Listcard key={item._id} item={item} handleDelete={handleDelete} />
                             ))}
                         </div>
                     )
