@@ -68,6 +68,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [cities, setCities] = useState([]);  // State to hold cities based on selected state
   const navigate = useNavigate();
+  const APIURL = import.meta.env.VITE_API;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -88,7 +89,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/user/register', formData, {
+      const response = await axios.post(APIURL + '/user/register', formData, {
         headers: {
           'Content-Type': 'application/json',
         },

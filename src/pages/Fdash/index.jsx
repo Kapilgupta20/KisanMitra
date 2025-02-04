@@ -1,7 +1,8 @@
 import React from "react";
+// import { useNavigate } from "react-router-dom";
+import Sidebar from './components/SideBar';
+import Weather from './components/Weathercmp';
 import Header from "./components/Header";
-import Sidebar from "./components/SideBar";
-import Weather from "./components/weathercmp";
 
 const Fdashboard = () => {
   return (

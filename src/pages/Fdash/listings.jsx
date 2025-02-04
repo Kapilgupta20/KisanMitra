@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Header from './components/header';
+import Header from './components/Header';
 import Sidebar from './components/SideBar';
-import Listcard from "./components/Listcard";
-import { ListingModal } from "./components/ListingModal";
+import Listcard from './components/Listcard';
+import { ListingModal } from './components/ListingModal';
 
 const Listings = () => {
     const [data, setdata] = useState(null);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
-
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalFormData, setModalFormData] = useState({
         croptype: "",
@@ -26,7 +24,8 @@ const Listings = () => {
     });
     const [modalIsLoading, setModalIsLoading] = useState(false);
     const [modalError, setModalError] = useState("");
-    // const [editingListing, setEditingListing] = useState(false);
+    const navigate = useNavigate();
+    const APIURL = import.meta.env.VITE_API;
 
     const fetchlistings = async () => {
         const token = localStorage.getItem('token');
@@ -36,13 +35,12 @@ const Listings = () => {
             return;
         };
         try {
-            const response = await axios.post('http://localhost:8000/fdashboard/listings/view', { email: email }, {
+            const response = await axios.post(APIURL + '/fdashboard/listings/view', { email: email }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 },
             });
-            // console.log(response.data);
             setdata(response.data);
         } catch (err) {
             setError(err.message);
@@ -72,7 +70,6 @@ const Listings = () => {
             fpincode: "",
             email: "",
         });
-        // setEditingListing(false);
     };
 
     const handleModalSubmit = async (e) => {
@@ -87,7 +84,7 @@ const Listings = () => {
         setModalError("");
 
         try {
-            const response = await axios.post('http://localhost:8000/fdashboard/listings/addnew', modalFormData, {
+            const response = await axios.post(APIURL + '/fdashboard/listings/addnew', modalFormData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
@@ -95,7 +92,6 @@ const Listings = () => {
             });
             setdata([...data, { ...modalFormData, id: data.length + 1 }]);
             closeModal();
-            // fetchlistings();
         } catch (err) {
             setModalError("Failed to save listing. Please try again.");
         } finally {
@@ -106,7 +102,7 @@ const Listings = () => {
     const handleDelete = async (id) => {
         const token = localStorage.getItem('token');
         const email = localStorage.getItem('email');
-        if(!token || !email) {
+        if (!token || !email) {
             navigate('/login');
             return;
         };
@@ -115,14 +111,13 @@ const Listings = () => {
             return;
         };
         try {
-            const response = await axios.post('http://localhost:8000/fdashboard/listings/view/delete', { listingId: id, email }, {
+            const response = await axios.post(APIURL + '/fdashboard/listings/view/delete', { listingId: id, email }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 },
             });
             setdata(data.filter((item) => item._id !== id));
-            // fetchlistings();
         } catch (err) {
             setError("Failed to delete listing. Please try again.");
         }
@@ -160,7 +155,6 @@ const Listings = () => {
                 setFormData={setModalFormData}
                 isLoading={modalIsLoading}
                 error={modalError}
-                // editingListing={editingListing}
             />
         </>
     )

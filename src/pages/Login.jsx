@@ -11,7 +11,8 @@ const Login = () => {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
+  const APIURL = import.meta.env.VITE_API;
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -19,7 +20,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/user/login', formData, {
+      const response = await axios.post(APIURL + '/user/login', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
