@@ -63,7 +63,7 @@ const Header = () => {
                   <li>
                     <Link
                       className="w-full flex items-center px-4 py-2 text-red-600 hover:bg-gray-100"
-                      to="/Login"
+                      to="/Home"
                       onClick={handleSignOut}
                     >
                       <LogOut className="w-4 h-4 mr-2" />
