@@ -34,7 +34,7 @@ const Header = () => {
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <img src={sproutLogo} alt="KisanMitra Logo" className="h-8 w-8 mr-2" />
-          <Link to="/BDashboard" className="text-2xl font-bold text-[#2A2A2A]">KisanMitra</Link>
+          <Link to="/Bdashboard" className="text-2xl font-bold text-[#2A2A2A]">KisanMitra</Link>
         </div>
 
         <nav>
@@ -54,7 +54,7 @@ const Header = () => {
                   <li>
                     <Link
                       className="w-full flex items-center px-4 py-2 hover:bg-gray-100"
-                      to="/FDashboard/info"
+                      to="/Bdashboard/info"
                     >
                       <Info className="w-4 h-4 mr-2" />
                       View Details
@@ -63,7 +63,7 @@ const Header = () => {
                   <li>
                     <Link
                       className="w-full flex items-center px-4 py-2 text-red-600 hover:bg-gray-100"
-                      to="/Login"
+                      to="/"
                       onClick={handleSignOut}
                     >
                       <LogOut className="w-4 h-4 mr-2" />

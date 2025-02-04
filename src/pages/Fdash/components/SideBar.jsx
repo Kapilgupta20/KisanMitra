@@ -7,9 +7,9 @@ const Sidebar = () => {
     const location = useLocation(); // Get current route
 
     const menuItems = [
-        { title: "My Listings", path: "/FDashboard/listings", icon: <List size={20} /> },
-        { title: "My Contracts", path: "/FDashboard/contracts", icon: <FileText size={20} /> },
-        { title: "Chats", path: "/FDashboard/chats", icon: <MessagesSquare size={20} /> }
+        { title: "My Listings", path: "/Fdashboard/listings", icon: <List size={20} /> },
+        { title: "My Contracts", path: "/Fdashboard/contracts", icon: <FileText size={20} /> },
+        { title: "Chats", path: "/Fdashboard/chats", icon: <MessagesSquare size={20} /> }
     ];
 
     return (

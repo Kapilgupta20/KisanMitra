@@ -9,6 +9,7 @@ import NotFound from "./pages/error.jsx";
 import Helpdesk from "./pages/HelpDesk.jsx";
 import Fdetails from "./pages/Fdash/fdetails.jsx";
 import Listings from "./pages/Fdash/listings.jsx";
+import Bdetails from "./pages/Bdash/Bdetails.jsx";
 
 
 function App() {
@@ -18,12 +19,13 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Landing />} />
         <Route path="/about" element={<About />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/FDashboard" element={<Fdash />} />
-        <Route path="/FDashboard/info" element={<Fdetails />} />
-        <Route path="/FDashboard/listings" element={<Listings/>} />
-        <Route path="/BDashboard" element={<Bdash />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/Fdashboard" element={<Fdash />} />
+        <Route path="/Fdashboard/info" element={<Fdetails />} />
+        <Route path="/Fdashboard/listings" element={<Listings/>} />
+        <Route path="/Bdashboard" element={<Bdash />} />
+        <Route path="/Bdashboard/info" element={<Bdetails/>} />
         <Route path="/Helpdesk" element={<Helpdesk/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>

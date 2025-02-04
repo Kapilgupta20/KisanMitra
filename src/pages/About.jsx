@@ -9,14 +9,14 @@ const About = () => {
             {/* Header */}
             <HeaderCmp /> {/* Add the HeaderCmp here */}
 
-             {/* Main Content */}
+            {/* Main Content */}
             <main className="flex-grow bg-white text-[#2A2A2A] px-4 py-10">
                 <div className="max-w-6xl mx-auto">
                     <h1 className="text-4xl font-bold mb-6 text-center">About KisanMitra</h1>
                     <p className="text-lg text-center text-[#555] mb-10">
                         <strong>KisanMitra</strong> is a platform designed to connect farmers directly with buyers, aiming to create a fair and efficient agricultural marketplace.
                     </p>
-                    
+
                     <p className="text-lg text-center text-[#555] mb-10">
                         <strong>Our Mission</strong> is to improve the agricultural supply chain using technology, ensuring fair prices for farmers and fresh produce for consumers.
                     </p>
@@ -26,45 +26,45 @@ const About = () => {
                     </p>
 
                     {/* Vision, Mission, and Impact Sections */}
-<section className="mb-10">
-    <div className="flex justify-between gap-10 flex-wrap">
-        {/* Vision Section */}
-        <div className="flex-1 p-6 bg-[#F0F9F1] rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold mb-4 flex items-center">
-                <Lightbulb className="mr-3 text-[#2A2A2A]" size={24} /> {/* Vision Icon */}
-                Our Vision
-            </h2>
-            <p className="text-lg text-[#555]">
-                To ensure fair compensation for farmers and access to high-quality agricultural products for consumers.
-            </p>
-        </div>
+                    <section className="mb-10">
+                        <div className="flex justify-between gap-10 flex-wrap">
+                            {/* Vision Section */}
+                            <div className="flex-1 p-6 bg-[#F0F9F1] rounded-lg shadow-md">
+                                <h2 className="text-2xl font-semibold mb-4 flex items-center">
+                                    <Lightbulb className="mr-3 text-[#2A2A2A]" size={24} /> {/* Vision Icon */}
+                                    Our Vision
+                                </h2>
+                                <p className="text-lg text-[#555]">
+                                    To ensure fair compensation for farmers and access to high-quality agricultural products for consumers.
+                                </p>
+                            </div>
 
-        {/* Mission Section */}
-        <div className="flex-1 p-6 bg-[#F0F9F1] rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold mb-4 flex items-center">
-                <Target className="mr-3 text-[#2A2A2A]" size={24} /> {/* Mission Icon */}
-                Our Mission
-            </h2>
-            <p className="text-lg text-[#555]">
-                To eliminate inefficiencies in the agricultural supply chain using technology.
-            </p>
-        </div>
+                            {/* Mission Section */}
+                            <div className="flex-1 p-6 bg-[#F0F9F1] rounded-lg shadow-md">
+                                <h2 className="text-2xl font-semibold mb-4 flex items-center">
+                                    <Target className="mr-3 text-[#2A2A2A]" size={24} /> {/* Mission Icon */}
+                                    Our Mission
+                                </h2>
+                                <p className="text-lg text-[#555]">
+                                    To eliminate inefficiencies in the agricultural supply chain using technology.
+                                </p>
+                            </div>
 
-        {/* Impact Section */}
-        <div className="flex-1 p-6 bg-[#F0F9F1] rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold mb-4 flex items-center">
-                <BarChart className="mr-3 text-[#2A2A2A]" size={24} /> {/* Impact Icon */}
-                Our Impact
-            </h2>
-            <p className="text-lg text-[#555]">
-                We've connected over <strong>10,000 farmers</strong> with <strong>1,000+ buyers</strong> and facilitated transactions worth <strong>₹100 crores</strong>.
-            </p>
-        </div>
-    </div>
-</section>
+                            {/* Impact Section */}
+                            <div className="flex-1 p-6 bg-[#F0F9F1] rounded-lg shadow-md">
+                                <h2 className="text-2xl font-semibold mb-4 flex items-center">
+                                    <BarChart className="mr-3 text-[#2A2A2A]" size={24} /> {/* Impact Icon */}
+                                    Our Impact
+                                </h2>
+                                <p className="text-lg text-[#555]">
+                                    We've connected over <strong>10,000 farmers</strong> with <strong>1,000+ buyers</strong> and facilitated transactions worth <strong>₹100 crores</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
 
-{/* Team Section */}
-{/* <section className="mb-10 text-center">
+                    {/* Team Section */}
+                    {/* <section className="mb-10 text-center">
                         <h2 className="text-2xl font-semibold mb-4">Our Team</h2>
                         <p className="text-lg text-[#555]">
                             Our team is a blend of agricultural experts, technologists, and business professionals working to transform the sector.

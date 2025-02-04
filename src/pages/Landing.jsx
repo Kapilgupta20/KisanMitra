@@ -30,12 +30,12 @@ const Landing = () => {
                     >
                         Get Started
                     </button>
-                    <button
+                    {/* <button
                         className="px-6 py-2 border-2 border-[#2A2A2A] text-[#2A2A2A] rounded-lg hover:bg-[#A8CBB5] transition-colors"
                         onClick={() => navigate("/login")}
                     >
                         Login
-                    </button>
+                    </button> */}
                 </div>
             </div>
             

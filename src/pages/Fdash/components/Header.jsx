@@ -27,6 +27,7 @@ const Header = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("role");
+    localStorage.removeItem("city");
   };
 
   return (
@@ -34,7 +35,7 @@ const Header = () => {
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <img src={sproutLogo} alt="KisanMitra Logo" className="h-8 w-8 mr-2" />
-          <Link to="/FDashboard" className="text-2xl font-bold text-[#2A2A2A]">KisanMitra</Link>
+          <Link to="/Fdashboard" className="text-2xl font-bold text-[#2A2A2A]">KisanMitra</Link>
         </div>
 
         <nav>
@@ -54,7 +55,7 @@ const Header = () => {
                   <li>
                     <Link
                       className="w-full flex items-center px-4 py-2 hover:bg-gray-100"
-                      to="/FDashboard/info"
+                      to="/Fdashboard/info"
                     >
                       <Info className="w-4 h-4 mr-2" />
                       View Details

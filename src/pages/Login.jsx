@@ -30,9 +30,10 @@ const Login = () => {
       localStorage.setItem('email', formData.email);
       localStorage.setItem('role', response.data.role);
       if (response.data.role === 'farmer') {
-        navigate('/FDashboard');
+        localStorage.setItem('city', response.data.city);
+        navigate('/Fdashboard');
       } else if (response.data.role === 'buyer') {
-        navigate('/BDashboard');
+        navigate('/Bdashboard');
       } else {
         navigate('/login');
       }
@@ -45,7 +46,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-[#D1E8D0] flex flex-col">
       <div className="flex justify-between p-4">
-        <button onClick={() => navigate('/home')} className="text-[#2A2A2A] cursor-pointer">
+        <button onClick={() => navigate('/')} className="text-[#2A2A2A] cursor-pointer">
           <X size={24} />
         </button>
       </div>

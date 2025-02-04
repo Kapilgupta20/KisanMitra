@@ -20,16 +20,16 @@ const ContactForm = () => {
 
     emailjs
       .send(
-        "service_0opzz5s", // Replace with your EmailJS Service ID
-        "template_8l0ooqs", // Replace with your EmailJS Template ID
-        formData, // The form data object
-        "GLnPpbsS0Szj4qpme" // Replace with your EmailJS Public Key
+        import.meta.env.VITE_EMAIL_SERVICEID,
+        import.meta.env.VITE_EMAIL_TEMPID,
+        formData,
+        import.meta.env.VITE_EMAIL_PUBKEY
       )
       .then(
         (response) => {
           console.log("SUCCESS!", response.status, response.text);
           setSuccessMessage("Message sent successfully!");
-          setFormData({ name: "", email: "", message: "" }); // Reset form
+          setFormData({ name: "", email: "", message: "" });
         },
         (err) => {
           console.error("FAILED...", err);

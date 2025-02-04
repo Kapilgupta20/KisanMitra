@@ -22,7 +22,7 @@ export default function Weather() {
     const fetchWeatherData = async () => {
       try {
         const apiKey = import.meta.env.VITE_WEATHER_API_KEY; 
-        const city = "Kolkata";
+        const city = localStorage.getItem('city');
         const response = await fetch(
           `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
         );
