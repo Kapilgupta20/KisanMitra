@@ -8,6 +8,7 @@ const Fdetails = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const APIURL = import.meta.env.VITE_API;
 
   const fetchIdDetails = async () => {
     const token = localStorage.getItem('token');
@@ -17,7 +18,7 @@ const Fdetails = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:8000/user/iddetails', { email: email }, {
+      const response = await axios.post(APIURL + '/user/iddetails', { email: email }, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,

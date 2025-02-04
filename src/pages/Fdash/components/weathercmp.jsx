@@ -21,10 +21,8 @@ export default function Weather() {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const apiKey = "4952de39ba304c309fe164946250302"; // Replace with your WeatherAPI key
-        const city = "Kolkata"; // Replace this with the desired city
-
-        // Fetch current weather data from WeatherAPI
+        const apiKey = import.meta.env.VITE_WEATHER_API_KEY; 
+        const city = "Kolkata";
         const response = await fetch(
           `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`
         );
@@ -35,7 +33,6 @@ export default function Weather() {
 
         const data = await response.json();
 
-        // Check if astro data exists and set the weather data
         setWeatherData({
           temperature: data.current.temp_f, // Fahrenheit
           feelsLike: data.current.feelslike_f, // Fahrenheit
@@ -108,7 +105,6 @@ export default function Weather() {
         </div>
       </CardContent>
       <CardFooter>
-        {/* Add Footer Content if necessary */}
       </CardFooter>
     </Card>
   );

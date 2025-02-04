@@ -1,13 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "./components/Header";
-import Sidebar from "./components/SideBar";
-import Weather from "./components/weathercmp";
+import Sidebar from './components/SideBar';
+import Weather from './components/Weathercmp';
+import Header from "./components/header";
 
 const Fdashboard = () => {
   return (
     <>
-      <Header />
+      <Header/>
       <div className="flex min-h-screen">
         {/* Sidebar */}
         <Sidebar />
