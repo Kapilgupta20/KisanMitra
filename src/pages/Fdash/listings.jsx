@@ -122,31 +122,44 @@ const Listings = () => {
             setError("Failed to delete listing. Please try again.");
         }
     };
+
     if (error) {
         return <div>Error: {error}</div>;
     }
 
     return (
         <>
-            <Header />
-            <div className="flex min-h-screen">
-                <Sidebar />
-                <div className="flex-1 bg-gray-100 p-8">
-                    <button onClick={openModal}
-                        className="cursor-pointer px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 mb-4">
+            {/* Fixed Header */}
+            <div className="fixed top-0 left-0 w-full z-50">
+                <Header />
+            </div>
+
+            <div className="flex">
+                {/* Fixed Sidebar */}
+                <div className="fixed top-[64px] left-0 h-[calc(100vh-64px)] w-64">
+                    <Sidebar />
+                </div>
+
+                {/* Main Content */}
+                <div className="flex-1 ml-64 mt-16 p-8 overflow-auto h-screen bg-gray-100">
+                    <button
+                        onClick={openModal}
+                        className="cursor-pointer px-4 py-2 bg-green-800 text-white rounded-md hover:bg-green-900 mb-4"
+                    >
                         Add new listing
                     </button>
                     <h1 className="text-3xl font-bold text-center mb-8">Listing Details</h1>
+                    
                     {data && (
-                        <div className="flex flex-wrap justify-center">
+                        <div className="flex flex-wrap gap-4 justify-center">
                             {data.map((item) => (
                                 <Listcard key={item._id} item={item} handleDelete={handleDelete} />
                             ))}
                         </div>
-                    )
-                    }
+                    )}
                 </div>
             </div>
+
             <ListingModal
                 isOpen={modalIsOpen}
                 onClose={closeModal}
@@ -157,7 +170,7 @@ const Listings = () => {
                 error={modalError}
             />
         </>
-    )
-}
+    );
+};
 
 export default Listings;
