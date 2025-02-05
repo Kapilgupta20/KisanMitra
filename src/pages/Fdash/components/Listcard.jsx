@@ -1,6 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { CircleChevronRight } from 'lucide-react';
 
 const Listcard = ({ item, handleDelete }) => {
+  const [data, setdata] = useState(null);
+  const [isModalOpen, setModalOpen] = useState(false);
+  // const [selectedCrop, setSelectedCrop] = useState(null);
+  const [error, setError] = useState(null);
+
+  const fetchbids = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
+    try {
+      const response = await axios.post(import.meta.env.VITE_API + '/fdashboard/listings/view/bids', { listingId: item._id }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      setdata(response.data);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  useEffect(() => {
+    fetchbids();
+  }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className="bg-white shadow-md rounded-lg p-6 m-4 w-full max-w-sm">
       <h2 className="text-2xl font-bold mb-3">{item.croptype}</h2>
@@ -33,6 +66,11 @@ const Listcard = ({ item, handleDelete }) => {
       >
         Delete
       </button>
+      <div>
+        {data && data.map((bid) => (
+          <>{bid.fname} {bid.price} <button onClick={() => openmodal(bid)}><CircleChevronRight /></button></>
+        ))}
+      </div>
     </div>
   );
 };
