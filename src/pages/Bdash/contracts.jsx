@@ -5,7 +5,7 @@ import { FileText, Download } from 'lucide-react';
 import Header from './components/Header';
 import Sidebar from './components/SideBar';
 
-const FContracts = () => {
+const BContracts = () => {
     const [contracts, setContracts] = useState([]);
     const [selectedContract, setSelectedContract] = useState(null);
     const [error, setError] = useState(null);
@@ -104,7 +104,7 @@ const FContracts = () => {
                                                     }`}
                                             >
                                                 <div className="flex items-center justify-between mb-2">
-                                                    <span className="font-medium text-gray-900">{contract.bname}</span>
+                                                    <span className="font-medium text-gray-900">{contract.fname}</span>
                                                     <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(contract.status)}`}>
                                                         {contract.status}
                                                     </span>
@@ -125,7 +125,7 @@ const FContracts = () => {
                                         <div className="p-6 border-b">
                                             <div className="flex items-center justify-between mb-4">
                                                 <div>
-                                                    <h2 className="text-xl font-semibold text-gray-900">{selectedContract.bname}</h2>
+                                                    <h2 className="text-xl font-semibold text-gray-900">{selectedContract.fname}</h2>
                                                     <p className="text-gray-600">{selectedContract.crop}</p>
                                                 </div>
                                                 <div className="flex items-center gap-2">
@@ -183,4 +183,4 @@ const FContracts = () => {
     );
 }
 
-export default FContracts;
+export default BContracts;
