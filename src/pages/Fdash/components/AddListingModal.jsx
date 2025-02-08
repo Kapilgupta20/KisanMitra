@@ -7,7 +7,7 @@ const monthOptions = [
   "July", "August", "September", "October", "November", "December"
 ];
 
-export const ListingModal = ({
+export const AddListingModal = ({
   isOpen,
   onClose,
   onSubmit,
