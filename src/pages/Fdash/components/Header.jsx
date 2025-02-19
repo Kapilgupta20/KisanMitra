@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useNavigate } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import sproutLogo from '../../../assets/sprout.svg';
 import { User, ChevronDown, LogOut, Info } from "lucide-react";
@@ -24,10 +24,7 @@ const Header = () => {
   }, [isOpen]);
 
   const handleSignOut = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    localStorage.removeItem("role");
-    localStorage.removeItem("city");
+    localStorage.clear();
   };
 
   return (
@@ -64,7 +61,7 @@ const Header = () => {
                   <li>
                     <Link
                       className="w-full flex items-center px-4 py-2 text-red-600 hover:bg-gray-100"
-                      to="/Home"
+                      to="/"
                       onClick={handleSignOut}
                     >
                       <LogOut className="w-4 h-4 mr-2" />

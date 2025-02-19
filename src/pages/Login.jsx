@@ -25,10 +25,11 @@ const Login = () => {
           'Content-Type': 'application/json',
         },
       });
-      console.log('Login successful:', response.data);
+      // console.log('Login successful:', response.data);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('email', formData.email);
       localStorage.setItem('role', response.data.role);
+      localStorage.setItem("loginTime", Date.now());
       if (response.data.role === 'farmer') {
         localStorage.setItem('city', response.data.city);
         navigate('/Fdashboard');
