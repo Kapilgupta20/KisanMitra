@@ -67,7 +67,6 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-[#D1E8D0] flex flex-col">
-      {/* Cross icon to navigate to home */}
       <div className="absolute top-4 left-4 text-gray-700 cursor-pointer" onClick={() => navigate('/home')}>
         <X size={24} />
       </div>
