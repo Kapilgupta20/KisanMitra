@@ -8,7 +8,7 @@ export function ExpressInterestModal({ item, isOpen, onClose, onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(item._id, amount, item.email);
+        onSubmit(item._id, amount, item.email, item.fname);
         onClose();
     };
 
@@ -31,7 +31,7 @@ export function ExpressInterestModal({ item, isOpen, onClose, onSubmit }) {
 
                         <div className="grid grid-cols-2 gap-4 text-sm">
                             <div>
-                                <span className="text-gray-500">Current Price:</span>
+                                <span className="text-gray-500">Current Price: ₹</span>
                                 <span className="ml-2 font-medium text-gray-900">{item.price}</span>
                             </div>
                             <div>

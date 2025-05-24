@@ -28,7 +28,7 @@ const Marketplace = () => {
         setSelectedCrop(null);
     };
 
-    const handleSubmit = async (listingId, price, femail) => {
+    const handleSubmit = async (listingId, price, femail, fname) => {
         const token = localStorage.getItem('token');
         const bemail = localStorage.getItem('email');
         if (!token || !bemail) {
@@ -39,9 +39,9 @@ const Marketplace = () => {
         if (!isConfirmed) {
             return;
         };
-        console.log({ listingId, femail, price, bemail });
+        // console.log({ listingId, femail, price, bemail });
         try {
-            const response = await axios.post(APIURL + '/bdashboard/bids/create', { listingId, femail, price, bemail }, {
+            const response = await axios.post(APIURL + '/bdashboard/bids/create', { listingId, femail, price, bemail, fname }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,

@@ -5,7 +5,7 @@ import { MessageCircle } from 'lucide-react';
 import Sidebar from './components/SideBar';
 import Header from './components/Header';
 
-const Fchat = () => {
+const Bchat = () => {
     const [chats, setchats] = useState([]);
     const [selectedChat, setSelectedChat] = useState(null);
     const [counterOffer, setCounterOffer] = useState({ price: '' });
@@ -21,7 +21,7 @@ const Fchat = () => {
             return;
         }
         try {
-            const response = await axios.post(APIURL + '/fdashboard/chats', { email }, {
+            const response = await axios.post(APIURL + '/bdashboard/chats', { email }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
@@ -61,7 +61,7 @@ const Fchat = () => {
             return;
         };
         try {
-            const response = await axios.put(APIURL + '/fdashboard/chats/sendmes', { chatId: selectedChat._id, message: counterOffer.price }, {
+            const response = await axios.put(APIURL + '/bdashboard/chats/sendmes', { chatId: selectedChat._id, message: counterOffer.price }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
@@ -85,7 +85,7 @@ const Fchat = () => {
             return;
         };
         try {
-            const response = await axios.post(APIURL + '/fdashboard/chats/agree', { chatId: selectedChat._id }, {
+            const response = await axios.post(APIURL + '/bdashboard/chats/agree', { chatId: selectedChat._id }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
@@ -109,7 +109,7 @@ const Fchat = () => {
             return;
         };
         try {
-            const response = await axios.put(APIURL + '/fdashboard/chats/reject', { chatId: selectedChat._id }, {
+            const response = await axios.put(APIURL + '/bdashboard/chats/reject', { chatId: selectedChat._id }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
@@ -152,7 +152,7 @@ const Fchat = () => {
                                                     }`}
                                             >
                                                 <div className="flex items-center justify-between mb-2">
-                                                    <span className="font-medium text-gray-900">{chat.bname}</span>
+                                                    <span className="font-medium text-gray-900">{chat.fname}</span>
                                                     <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(chat.status)}`}>
                                                         {chat.status}
                                                     </span>
@@ -173,7 +173,7 @@ const Fchat = () => {
                                         <div className="p-6 border-b">
                                             <div className="flex items-center justify-between mb-4">
                                                 <div>
-                                                    <h2 className="text-xl font-semibold text-gray-900">{selectedChat.bname}</h2>
+                                                    <h2 className="text-xl font-semibold text-gray-900">{selectedChat.fname}</h2>
                                                     <p className="text-gray-600">{selectedChat.crop}</p>
                                                 </div>
                                                 <span className={`px-3 py-1 rounded-full text-sm ${getStatusColor(selectedChat.status)}`}>
@@ -197,14 +197,14 @@ const Fchat = () => {
                                             <h3 className="text-lg font-semibold text-gray-900 mb-4">Negotiation History</h3>
                                             <div className="space-y-4">
                                                 {selectedChat.messages?.map((entry,index) => (
-                                                    <div key={index} className={`flex gap-4 ${entry.sender === "farmer" ? 'flex-row-reverse' : ''}`}>
+                                                    <div key={index} className={`flex gap-4 ${entry.sender === "buyer" ? 'flex-row-reverse' : ''}`}>
                                                         <div
-                                                            className={`flex-1 p-4 rounded-lg ${entry.sender === "farmer" ? 'bg-green-50 text-green-900' : 'bg-gray-50 text-gray-900'
+                                                            className={`flex-1 p-4 rounded-lg ${entry.sender === "buyer" ? 'bg-green-50 text-green-900' : 'bg-gray-50 text-gray-900'
                                                                 }`}
                                                         >
                                                             <div className="flex items-center justify-between mb-2">
                                                                 <span className="font-medium">
-                                                                    {entry.sender === "farmer" ? 'Your Offer' : "Buyer's Offer"}
+                                                                    {entry.sender === "buyer" ? 'Your Offer' : "Farmer's Offer"}
                                                                 </span>
                                                                 <span className="text-sm text-gray-500">{entry.timestamp}</span>
                                                             </div>
@@ -220,7 +220,7 @@ const Fchat = () => {
                                             </div>
                                         </div>
 
-                                        {selectedChat.status.toLowerCase() === "negotiating" && selectedChat.fagree === false && (
+                                        {selectedChat.status.toLowerCase() === "negotiating" && selectedChat.bagree === false && (
                                             <div className="p-6">
                                                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Submit Counter Offer</h3>
                                                 <form onSubmit={handleSubmitCounter} className="space-y-4">
@@ -254,9 +254,9 @@ const Fchat = () => {
                                                 </form>
                                             </div>
                                         )}
-                                        {selectedChat.fagree === true && (
+                                        {selectedChat.bagree === true && (
                                             <div className="p-6">
-                                                <h3>Waiting for buyer's response</h3>
+                                                <h3>Waiting for farmer's response</h3>
                                             </div>
                                         )}
                                     </div>
@@ -276,4 +276,4 @@ const Fchat = () => {
     );
 }
 
-export default Fchat;
+export default Bchat;

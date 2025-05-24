@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { List, FileText, MessagesSquare } from "lucide-react";
+import { List, FileText, MessageSquare } from "lucide-react";
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -9,7 +9,7 @@ const Sidebar = () => {
     const menuItems = [
         { title: "My Listings", path: "/Fdashboard/listings", icon: <List size={20} /> },
         { title: "My Contracts", path: "/Fdashboard/contracts", icon: <FileText size={20} /> },
-        { title: "Chats", path: "/Fdashboard/chats", icon: <MessagesSquare size={20} /> }
+        { title: "Chats", path: "/Fdashboard/chats", icon: <MessageSquare size={20} /> }
     ];
 
     return (

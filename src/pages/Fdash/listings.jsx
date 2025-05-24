@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/SideBar';
 import Listcard from './components/Listcard';
-import { ListingModal } from './components/ListingModal';
+import { AddListingModal } from './components/AddListingModal';
+import Bidmodal from "./components/Bidmodal";
 
 const Listings = () => {
     const [data, setdata] = useState(null);
@@ -24,6 +25,9 @@ const Listings = () => {
     });
     const [modalIsLoading, setModalIsLoading] = useState(false);
     const [modalError, setModalError] = useState("");
+    const [isbidModalOpen, setbidModalOpen] = useState(false);
+    const [selecteditem, setSelecteditem] = useState(null);
+    const [selectedbid, setSelectedbid] = useState(null);
     const navigate = useNavigate();
     const APIURL = import.meta.env.VITE_API;
 
@@ -33,19 +37,32 @@ const Listings = () => {
         if (!token || !email) {
             navigate('/login');
             return;
-        };
+        }
         try {
-            const response = await axios.post(APIURL + '/fdashboard/listings/view', { email: email }, {
+            const response = await axios.post(APIURL + '/fdashboard/listings/view', { email }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 },
             });
-            setdata(response.data);
+
+            const listingsWithBids = await Promise.all(
+                response.data.map(async (item) => {
+                    const responseBids = await axios.post(APIURL + '/fdashboard/listings/view/bids', { listingId: item._id }, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`,
+                        },
+                    });
+                    return { ...item, bids: responseBids.data };
+                })
+            );
+            setdata(listingsWithBids);
         } catch (err) {
             setError(err.message);
         }
-    }
+    };
+
 
     useEffect(() => {
         fetchlistings();
@@ -123,6 +140,18 @@ const Listings = () => {
         }
     };
 
+    const openbidmodal = (item, bid) => {
+        setSelecteditem(item);
+        setSelectedbid(bid);
+        setbidModalOpen(true);
+    }
+
+    const onclosebid = () => {
+        setSelecteditem(null);
+        setbidModalOpen(false);
+        setSelectedbid(null);
+    }
+
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -153,14 +182,13 @@ const Listings = () => {
                     {data && (
                         <div className="flex flex-wrap gap-4 justify-center">
                             {data.map((item) => (
-                                <Listcard key={item._id} item={item} handleDelete={handleDelete} />
+                                <Listcard key={item._id} item={item} handleDelete={handleDelete} onselectbid={openbidmodal} />
                             ))}
                         </div>
                     )}
                 </div>
             </div>
-
-            <ListingModal
+            <AddListingModal
                 isOpen={modalIsOpen}
                 onClose={closeModal}
                 onSubmit={handleModalSubmit}
@@ -169,6 +197,14 @@ const Listings = () => {
                 isLoading={modalIsLoading}
                 error={modalError}
             />
+
+            <Bidmodal
+                item={selecteditem}
+                bid={selectedbid}
+                isOpen={isbidModalOpen}
+                onClose={onclosebid}
+            />
+
         </>
     );
 };
