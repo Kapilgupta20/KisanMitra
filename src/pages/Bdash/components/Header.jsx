@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useNavigate } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import sproutLogo from '../../../assets/sprout.svg';
 import { User, ChevronDown, LogOut, Info } from "lucide-react";
@@ -24,9 +24,7 @@ const Header = () => {
   }, [isOpen]);
 
   const handleSignOut = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    localStorage.removeItem("role");
+    localStorage.clear();
   };
 
   return (

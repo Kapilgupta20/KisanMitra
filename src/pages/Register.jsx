@@ -46,10 +46,11 @@ const Register = () => {
           'Content-Type': 'application/json',
         },
       });
-      console.log('Registration successful:', response.data);
+      // console.log('Registration successful:', response.data);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('email', formData.email);
       localStorage.setItem('role', response.data.role);
+      localStorage.setItem("loginTime", Date.now());
       if (formData.role === 'farmer') {
         localStorage.setItem('city', response.data.city);
         navigate('/Fdashboard');
@@ -66,7 +67,6 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-[#D1E8D0] flex flex-col">
-      {/* Cross icon to navigate to home */}
       <div className="absolute top-4 left-4 text-gray-700 cursor-pointer" onClick={() => navigate('/home')}>
         <X size={24} />
       </div>

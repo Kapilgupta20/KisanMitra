@@ -15,6 +15,7 @@ const Marketplace = () => {
     const [selectedState, setSelectedState] = useState('');
     const [isModalOpen, setModalOpen] = useState(false);
     const [selectedCrop, setSelectedCrop] = useState(null);
+    const [favourites, setFavourites] = useState([]);
     const navigate = useNavigate();
     const APIURL = import.meta.env.VITE_API;
 
@@ -36,12 +37,12 @@ const Marketplace = () => {
             return;
         };
         const isConfirmed = window.confirm("Are you sure you want to raise your interest in this crop?");
-        if (!isConfirmed) {
-            return;
-        };
-        // console.log({ listingId, femail, price, bemail });
+        if (!isConfirmed) return;
+
         try {
-            const response = await axios.post(APIURL + '/bdashboard/bids/create', { listingId, femail, price, bemail, fname }, {
+            await axios.post(`${APIURL}/bdashboard/bids/create`, {
+                listingId, femail, price, bemail, fname
+            }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
@@ -53,6 +54,86 @@ const Marketplace = () => {
         closeModal();
     };
 
+    const fetchListings = async () => {
+        const token = localStorage.getItem('token');
+        const email = localStorage.getItem('email');
+        if (!token || !email) {
+            navigate('/login');
+            return;
+        }
+        try {
+            const response = await axios.get(`${APIURL}/bdashboard/marketplace`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            const listings = response.data.map(item => ({
+                ...item,
+                _id: item._id.toString()
+            }));
+
+            setData(listings);
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
+    const fetchFavourites = async () => {
+        const email = localStorage.getItem('email');
+        const token = localStorage.getItem('token');
+        if (!email || !token) return;
+
+        try {
+            const res = await axios.post(`${APIURL}/bdashboard/marketplace/viewfav`, {
+                bemail: email
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+
+            const favIds = res.data.map(f => f.listingId?.toString());
+            setFavourites(favIds);
+        } catch (err) {
+            console.error("Error fetching favourites", err);
+        }
+    };
+
+    const toggleFavourite = async (itemId) => {
+        const email = localStorage.getItem('email');
+        const token = localStorage.getItem('token');
+        if (!email || !token) {
+            navigate('/login');
+            return;
+        }
+
+        const isFav = favourites.includes(itemId);
+        const endpoint = `${APIURL}/bdashboard/marketplace/${isFav ? 'deletefav' : 'addfav'}`;
+
+        try {
+            await axios.post(endpoint, {
+                bemail: email,
+                listingId: itemId
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+
+            setFavourites(prev =>
+                isFav ? prev.filter(id => id !== itemId) : [...prev, itemId]
+            );
+        } catch (err) {
+            console.error("Failed to toggle favourite", err);
+        }
+    };
+
+    useEffect(() => {
+        fetchListings();
+        fetchFavourites();
+    }, []);
+
     const categories = [
         { id: 'Rice', name: 'Rice' },
         { id: 'Wheat', name: 'Wheat' },
@@ -60,39 +141,12 @@ const Marketplace = () => {
         { id: 'Soyabean', name: 'Soyabean' }
     ];
 
-    const fetchListings = async () => {
-        const token = localStorage.getItem('token');
-        const email = localStorage.getItem('email');
-        if (!token || !email) {
-            navigate('/login');
-            return;
-        };
-        try {
-            const response = await axios.get(APIURL + '/bdashboard/marketplace', {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
-            setData(response.data);
-        } catch (err) {
-            setError(err.message);
-        }
-    }
+    const filteredData = data.filter(item =>
+        (selectedCategory === '' || item.croptype === selectedCategory) &&
+        (selectedState === '' || item.fstate === selectedState)
+    );
 
-    useEffect(() => {
-        fetchListings();
-    }, []);
-
-    const filteredData = data.filter(item => {
-        return (
-            (selectedCategory === '' || item.croptype === selectedCategory) &&
-            (selectedState === '' || item.fstate === selectedState)
-        );
-    });
-
-    if (error) {
-        return <div>{JSON.stringify(error)}</div>
-    }
+    if (error) return <div className="text-red-600 text-center p-4">{JSON.stringify(error)}</div>;
 
     return (
         <>
@@ -107,7 +161,6 @@ const Marketplace = () => {
 
                 <div className="ml-64 flex-1 p-8 mt-[64px] h-[calc(100vh-64px)] overflow-y-auto">
                     <h1 className="text-2xl font-bold mb-4">Marketplace</h1>
-                    <br></br>
 
                     <div className="flex flex-wrap items-center gap-4 mb-8">
                         <div className="flex items-center bg-white rounded-lg shadow-sm p-2">
@@ -142,9 +195,15 @@ const Marketplace = () => {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredData.map((item) => (
-                            <Mitemcard key={item._id} item={item} openmodal={openModal} />
+                            <Mitemcard
+                                key={item._id}
+                                item={item}
+                                openmodal={openModal}
+                                isFavourited={favourites.includes(item._id)}
+                                toggleFavourite={toggleFavourite}
+                            />
                         ))}
                     </div>
 
@@ -159,7 +218,7 @@ const Marketplace = () => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
 export default Marketplace;

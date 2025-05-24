@@ -20,7 +20,7 @@ const BContracts = () => {
             return;
         }
         try {
-            const response = await axios.post(APIURL + '/fdashboard/contracts', { email }, {
+            const response = await axios.post(APIURL + '/bdashboard/contracts', { email }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
@@ -43,7 +43,7 @@ const BContracts = () => {
             return;
         }
         try {
-            const response = await axios.post(APIURL + '/fdashboard/contracts/view', { contractId }, {
+            const response = await axios.post(APIURL + '/bdashboard/contracts/view', { contractId }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
