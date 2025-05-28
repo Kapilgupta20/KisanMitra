@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import sproutLogo from '../assets/sprout.svg'; 
+import { Github, Linkedin } from 'lucide-react';
+
+const teamLinkedInLinks = [
+  { name: "Kapil Gupta", url: "https://linkedin.com/in/kapilgupta20" },
+  { name: "Sarthak Khandelwal", url: "https://linkedin.com/in/sarthak436" }
+];
 
 const FooterCmp = () => {
   return (
@@ -21,7 +26,7 @@ const FooterCmp = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-[#F1F1F1]">Quick Links</h3>
             <ul className="space-y-2">
-              {["Home", "About", "Services", "Contact"].map((item, idx) => (
+              {["Home", "About", "Contact", "FAQ"].map((item, idx) => (
                 <li key={idx}>
                   <Link
                     to={`/${item.toLowerCase()}`}
@@ -56,7 +61,7 @@ const FooterCmp = () => {
             </ul>
           </div>
 
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold mb-4 text-[#F1F1F1]">Follow Us</h3>
             <div className="flex space-x-4">
               {[Facebook, Twitter, Instagram, Linkedin].map((Icon, idx) => (
@@ -66,7 +71,42 @@ const FooterCmp = () => {
                 </a>
               ))}
             </div>
-          </div>
+          </div> */}
+
+<div>
+  <h3 className="text-lg font-semibold mb-4 text-[#F1F1F1]">Follow</h3>
+
+  {/* GitHub Icon Link */}
+  <div className="flex space-x-4">
+    <a
+      href="https://github.com/your-username/your-repo"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-[#A8CBB5] transition-colors text-[#CCCCCC]"
+    >
+      <Github size={24} />
+      <span className="sr-only">GitHub</span>
+    </a>
+  </div>
+
+  {/* LinkedIn Team Links */}
+  <div className="mt-4 space-y-2 text-sm text-[#CCCCCC]">
+    {teamLinkedInLinks.map((member, idx) => (
+      <div key={idx}>
+        <a
+          href={member.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-[#A8CBB5] transition-colors flex items-center space-x-2"
+        >
+          <Linkedin size={16} />
+          <span>{member.name}</span>
+        </a>
+      </div>
+    ))}
+  </div>
+</div>
+
         </div>
 
         <div className="border-t border-[#444] mt-8 pt-8 text-sm text-center text-[#999]">

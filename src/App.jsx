@@ -24,11 +24,13 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Landing />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/Home" element={<Landing />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
         <Route path="/Helpdesk" element={<Helpdesk />} />
+        <Route path="/FAQ" element={<Helpdesk />} />
+        <Route path="/Contact" element={<Helpdesk />} />
         <Route element={<ProtectedRoute />} >
           <Route path="/Fdashboard" element={<Fdash />} />
           <Route path="/Fdashboard/info" element={<Fdetails />} />
