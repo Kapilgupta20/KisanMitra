@@ -8,7 +8,6 @@ import Fdash from "./pages/Fdash/index.jsx";
 import Bdash from "./pages/Bdash/Dashboard.jsx";
 import NotFound from "./pages/error.jsx";
 import Helpdesk from "./pages/HelpDesk.jsx";
-import Fdetails from "./pages/Fdash/fdetails.jsx";
 import Listings from "./pages/Fdash/listings.jsx";
 import Bdetails from "./pages/Bdash/Info.jsx";
 import Marketplace from "./pages/Bdash/marketplace.jsx";
@@ -17,6 +16,7 @@ import BContracts from "./pages/Bdash/contracts.jsx";
 import Bchat from "./pages/Bdash/chatting.jsx";
 import Fchat from "./pages/Fdash/chatting.jsx";
 import ProtectedRoute from "./components/protectedroute.jsx";
+import Fdetails from './pages/Fdash/Info.jsx';
 
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
         <Route path="/Contact" element={<Helpdesk />} />
         <Route element={<ProtectedRoute />} >
           <Route path="/Fdashboard" element={<Fdash />} />
-          <Route path="/Fdashboard/info" element={<Fdetails />} />
+          <Route path="/Fdashboard/info" element={<Fdetails/>} />
           <Route path="/Fdashboard/listings" element={<Listings />} />
           <Route path="/Fdashboard/contracts" element={<FContracts />} />
           <Route path="/Fdashboard/chats" element={<Fchat />} />

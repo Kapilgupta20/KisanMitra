@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { MessageCircle } from 'lucide-react';
 import Sidebar from './components/SideBar';
 import Header from './components/Header';
+import FooterCmp from '../Bdash/components/footer';
 
 const Fchat = () => {
     const [chats, setchats] = useState([]);
@@ -126,13 +127,17 @@ const Fchat = () => {
     }
 
     return (
-        <>
-            <div className="min-h-screen bg-gray-50 flex">
-                <Sidebar />
-                <div className="flex-1 overflow-auto">
-                    <Header />
+        <div className="min-h-screen">
+    <div className="fixed top-0 left-0 w-full z-50">
+      <Header />
+    </div>
 
-                    <main className="p-6">
+    {/* Sidebar - fixed */}
+    <div className="fixed top-[64px] left-0 w-64 h-[calc(100vh-64px)] z-40 bg-white shadow">
+      <Sidebar />
+    </div>
+    <div className="ml-64 pt-[64px] min-h-screen flex flex-col">
+        <main className="p-8 flex-grow">
                         <div className="mb-8">
                             <h1 className="text-2xl font-bold text-gray-900 mb-2">Active Negotiations</h1>
                         </div>
@@ -270,9 +275,9 @@ const Fchat = () => {
                             </div>
                         </div>
                     </main>
+                    <FooterCmp/>
                 </div>
             </div>
-        </>
     );
 }
 

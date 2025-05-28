@@ -69,6 +69,7 @@ export default function Weather() {
         <CardTitle className="flex items-center text-2xl">
           <Sun className="mr-2 h-8 w-8" /> Weather Details
         </CardTitle>
+        <h3 className="text-muted-foreground text-sm mt-1">{weatherData.location}</h3>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 gap-4">

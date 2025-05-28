@@ -6,6 +6,7 @@ import Sidebar from './components/SideBar';
 import Listcard from './components/Listcard';
 import { AddListingModal } from './components/AddListingModal';
 import Bidmodal from "./components/Bidmodal";
+import FooterCmp from "./components/Footer";
 
 const Listings = () => {
     const [data, setdata] = useState(null);
@@ -157,55 +158,63 @@ const Listings = () => {
     }
 
     return (
-        <>
-            {/* Fixed Header */}
-            <div className="fixed top-0 left-0 w-full z-50">
-                <Header />
-            </div>
+        <div className="min-h-screen">
+  {/* Header - fixed */}
+  <div className="fixed top-0 left-0 w-full z-50">
+    <Header />
+  </div>
 
-            <div className="flex">
-                {/* Fixed Sidebar */}
-                <div className="fixed top-[64px] left-0 h-[calc(100vh-64px)] w-64">
-                    <Sidebar />
-                </div>
+  {/* Sidebar - fixed */}
+  <div className="fixed top-[64px] left-0 w-64 h-[calc(100vh-64px)] z-40 bg-white shadow">
+    <Sidebar />
+  </div>
 
-                {/* Main Content */}
-                <div className="flex-1 ml-64 mt-16 p-8 overflow-auto h-screen bg-gray-100">
-                    <button
-                        onClick={openModal}
-                        className="cursor-pointer px-4 py-2 bg-green-800 text-white rounded-md hover:bg-green-900 mb-4"
-                    >
-                        Add new listing
-                    </button>
-                    <h1 className="text-3xl font-bold text-center mb-8">Listing Details</h1>
-                    
-                    {data && (
-                        <div className="flex flex-wrap gap-4 justify-center">
-                            {data.map((item) => (
-                                <Listcard key={item._id} item={item} handleDelete={handleDelete} onselectbid={openbidmodal} />
-                            ))}
-                        </div>
-                    )}
-                </div>
-            </div>
-            <AddListingModal
-                isOpen={modalIsOpen}
-                onClose={closeModal}
-                onSubmit={handleModalSubmit}
-                formData={modalFormData}
-                setFormData={setModalFormData}
-                isLoading={modalIsLoading}
-                error={modalError}
-            />
+  <div className="ml-64 pt-[64px] min-h-screen flex flex-col">
+    <main className="p-8 flex-grow">
+      {/* <div className="flex-1 ml-64 mt-16 p-8 overflow-auto h-screen bg-gray-100"> */}
+        <button
+          onClick={openModal}
+          className="cursor-pointer px-4 py-2 bg-green-800 text-white rounded-md hover:bg-green-900 mb-4"
+        >
+          Add new listing
+        </button>
+        <h1 className="text-3xl font-bold text-center mb-8">Listing Details</h1>
 
-            <Bidmodal
-                item={selecteditem}
-                bid={selectedbid}
-                isOpen={isbidModalOpen}
-                onClose={onclosebid}
-            />
+        {data && (
+          <div className="flex flex-wrap gap-4 justify-center">
+            {data.map((item) => (
+              <Listcard
+                key={item._id}
+                item={item}
+                handleDelete={handleDelete}
+                onselectbid={openbidmodal}
+              />
+            ))}
+          </div>
+        )}
+      {/* </div> */}
 
-        </>
+      <AddListingModal
+        isOpen={modalIsOpen}
+        onClose={closeModal}
+        onSubmit={handleModalSubmit}
+        formData={modalFormData}
+        setFormData={setModalFormData}
+        isLoading={modalIsLoading}
+        error={modalError}
+      />
+
+      <Bidmodal
+        item={selecteditem}
+        bid={selectedbid}
+        isOpen={isbidModalOpen}
+        onClose={onclosebid}
+      />
+    </main>
+
+    <FooterCmp />
+  </div>
+</div>
     );
 };
 
