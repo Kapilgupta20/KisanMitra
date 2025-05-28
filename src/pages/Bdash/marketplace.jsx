@@ -7,6 +7,8 @@ import Sidebar from "./components/SideBar";
 import { Filter, MapPin } from 'lucide-react';
 import { statesAndUTs } from "../../data";
 import { ExpressInterestModal } from "./components/Intmodal";
+import FooterCmp from "./components/footer";
+
 
 const Marketplace = () => {
     const [data, setData] = useState([]);
@@ -149,76 +151,84 @@ const Marketplace = () => {
     if (error) return <div className="text-red-600 text-center p-4">{JSON.stringify(error)}</div>;
 
     return (
-        <>
-            <div className="fixed top-0 left-0 w-full z-50">
-                <Header />
-            </div>
+  <div className="min-h-screen">
+    {/* Header - fixed */}
+    <div className="fixed top-0 left-0 w-full z-50">
+      <Header />
+    </div>
 
-            <div className="flex">
-                <div className="fixed top-[64px] left-0 h-[calc(100vh-64px)] w-64">
-                    <Sidebar />
-                </div>
+    {/* Sidebar - fixed */}
+    <div className="fixed top-[64px] left-0 w-64 h-[calc(100vh-64px)] z-40 bg-white shadow">
+      <Sidebar />
+    </div>
 
-                <div className="ml-64 flex-1 p-8 mt-[64px] h-[calc(100vh-64px)] overflow-y-auto">
-                    <h1 className="text-2xl font-bold mb-4">Marketplace</h1>
+    {/* Main content and footer - scrollable layout */}
+    <div className="ml-64 pt-[64px]">
+      <div className="p-8">
+        <h1 className="text-2xl font-bold mb-4">Marketplace</h1>
 
-                    <div className="flex flex-wrap items-center gap-4 mb-8">
-                        <div className="flex items-center bg-white rounded-lg shadow-sm p-2">
-                            <Filter className="h-5 w-5 text-gray-400 mr-2" />
-                            <select
-                                className="bg-transparent border-none focus:ring-0 text-gray-600 pr-8"
-                                value={selectedCategory}
-                                onChange={(e) => setSelectedCategory(e.target.value)}
-                            >
-                                <option value="">All Categories</option>
-                                {categories.map(category => (
-                                    <option key={category.id} value={category.id}>
-                                        {category.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="flex items-center bg-white rounded-lg shadow-sm p-2">
-                            <MapPin className="h-5 w-5 text-gray-400 mr-2" />
-                            <select
-                                className="bg-transparent border-none focus:ring-0 text-gray-600 pr-8"
-                                value={selectedState}
-                                onChange={(e) => setSelectedState(e.target.value)}
-                            >
-                                <option value="">All States</option>
-                                {statesAndUTs.map((state, index) => (
-                                    <option key={index} value={state}>
-                                        {state}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    </div>
+        <div className="flex flex-wrap items-center gap-4 mb-8">
+          <div className="flex items-center bg-white rounded-lg shadow-sm p-2">
+            <Filter className="h-5 w-5 text-gray-400 mr-2" />
+            <select
+              className="bg-transparent border-none focus:ring-0 text-gray-600 pr-8"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
+              <option value="">All Categories</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredData.map((item) => (
-                            <Mitemcard
-                                key={item._id}
-                                item={item}
-                                openmodal={openModal}
-                                isFavourited={favourites.includes(item._id)}
-                                toggleFavourite={toggleFavourite}
-                            />
-                        ))}
-                    </div>
+          <div className="flex items-center bg-white rounded-lg shadow-sm p-2">
+            <MapPin className="h-5 w-5 text-gray-400 mr-2" />
+            <select
+              className="bg-transparent border-none focus:ring-0 text-gray-600 pr-8"
+              value={selectedState}
+              onChange={(e) => setSelectedState(e.target.value)}
+            >
+              <option value="">All States</option>
+              {statesAndUTs.map((state, index) => (
+                <option key={index} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
-                    {isModalOpen && selectedCrop && (
-                        <ExpressInterestModal
-                            item={selectedCrop}
-                            isOpen={isModalOpen}
-                            onClose={closeModal}
-                            onSubmit={handleSubmit}
-                        />
-                    )}
-                </div>
-            </div>
-        </>
-    );
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredData.map((item) => (
+            <Mitemcard
+              key={item._id}
+              item={item}
+              openmodal={openModal}
+              isFavourited={favourites.includes(item._id)}
+              toggleFavourite={toggleFavourite}
+            />
+          ))}
+        </div>
+
+        {isModalOpen && selectedCrop && (
+          <ExpressInterestModal
+            item={selectedCrop}
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            onSubmit={handleSubmit}
+          />
+        )}
+      </div>
+
+      {/* Footer always below content */}
+      <FooterCmp />
+    </div>
+  </div>
+);
+
 };
 
 export default Marketplace;

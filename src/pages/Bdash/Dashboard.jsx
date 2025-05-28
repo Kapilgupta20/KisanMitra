@@ -60,6 +60,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/SideBar";
 import Mitemcard from "./components/Mitemcard";
 import { ExpressInterestModal } from "./components/Intmodal";
+import FooterCmp from "./components/footer";
 
 const Bdash = () => {
   const [bids, setBids] = useState([]);
@@ -204,59 +205,69 @@ const Bdash = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+  <div className="min-h-screen">
+    {/* Header - fixed */}
+    <div className="fixed top-0 left-0 w-full z-50">
       <Header />
-      <div className="flex flex-1">
-        <Sidebar />
-        <main className="flex-1 p-6 space-y-10">
-          <section>
-            <h1 className="text-2xl font-bold mb-4">Raised Bids</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {bids.length > 0 ? (
-                bids.map((item, index) => (
-                  <div key={index} className="bg-white p-4 rounded-lg shadow-md">
-                    <p><strong>Farmer Email:</strong> {item.femail}</p>
-                    <p><strong>Price:</strong> ₹{item.price}</p>
-                    <p><strong>Status:</strong> {item.status}</p>
-                  </div>
-                ))
-              ) : (
-                <p className="text-gray-500">No bids placed yet.</p>
-              )}
-            </div>
-          </section>
-
-          <section>
-            <h1 className="text-2xl font-bold mb-4">Favourite Listings</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {favourites.length > 0 ? (
-                favourites.map(item => (
-                  <Mitemcard
-                    key={item._id}
-                    item={item}
-                    openmodal={openModal}
-                    isFavourited={favouriteIds.includes(item._id)}
-                    toggleFavourite={toggleFavourite}
-                  />
-                ))
-              ) : (
-                <p className="text-gray-500">No favourite items found.</p>
-              )}
-            </div>
-
-            {isModalOpen && selectedCrop && (
-              <ExpressInterestModal
-                item={selectedCrop}
-                isOpen={isModalOpen}
-                onClose={closeModal}
-                onSubmit={handleSubmit}
-              />
-            )}
-          </section>
-        </main>
-      </div>
     </div>
-  );
+
+    {/* Sidebar - fixed */}
+    <div className="fixed top-[64px] left-0 w-64 h-[calc(100vh-64px)] z-40 bg-white shadow">
+      <Sidebar />
+    </div>
+
+    <div className="ml-64 pt-[64px] min-h-screen flex flex-col">
+      <main className="p-8 flex-grow">
+        <section className="mb-12">
+          <h1 className="text-2xl font-bold mb-4">Raised Bids</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {bids.length > 0 ? (
+              bids.map((item, index) => (
+                <div key={index} className="bg-white p-4 rounded-lg shadow-md">
+                  <p><strong>Farmer Email:</strong> {item.femail}</p>
+                  <p><strong>Price:</strong> ₹{item.price}</p>
+                  <p><strong>Status:</strong> {item.status}</p>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500">No bids placed yet.</p>
+            )}
+          </div>
+        </section>
+
+        <section>
+          <h1 className="text-2xl font-bold mb-4">Favourite Listings</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {favourites.length > 0 ? (
+              favourites.map(item => (
+                <Mitemcard
+                  key={item._id}
+                  item={item}
+                  openmodal={openModal}
+                  isFavourited={favouriteIds.includes(item._id)}
+                  toggleFavourite={toggleFavourite}
+                />
+              ))
+            ) : (
+              <p className="text-gray-500">No favourite items found.</p>
+            )}
+          </div>
+
+          {isModalOpen && selectedCrop && (
+            <ExpressInterestModal
+              item={selectedCrop}
+              isOpen={isModalOpen}
+              onClose={closeModal}
+              onSubmit={handleSubmit}
+            />
+          )}
+        </section>
+      </main>
+      <FooterCmp />
+    </div>
+  </div>
+);
+
 };
 
 export default Bdash;

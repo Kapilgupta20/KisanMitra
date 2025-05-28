@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import sproutLogo from '../assets/sprout.svg'; 
+import sproutLogo from '/src/assets/sprout.svg'; 
 import { Github, Linkedin } from 'lucide-react';
 
 const teamLinkedInLinks = [
@@ -18,18 +18,15 @@ const FooterCmp = () => {
               <img src={sproutLogo} alt="KisanMitra Logo" className="h-8 w-8 mr-2" />
               <h2 className="text-2xl font-bold text-[#F1F1F1]">KisanMitra</h2>
             </div>
-            <p className="text-[#CCCCCC]">
-              Empowering farmers with technology-driven solutions for a better tomorrow.
-            </p>
           </div>
 
           <div>
             <h3 className="text-lg font-semibold mb-4 text-[#F1F1F1]">Quick Links</h3>
             <ul className="space-y-2">
-              {["Home", "About", "Contact", "FAQ"].map((item, idx) => (
+              {["Info", "Marketplace", "Contracts", "Chats"].map((item, idx) => (
                 <li key={idx}>
                   <Link
-                    to={`/${item.toLowerCase()}`}
+                    to={`/BDashboard/${item.toLowerCase()}`}
                     className="hover:text-[#A8CBB5] transition-colors text-[#CCCCCC]"
                   >
                     {item}
@@ -109,11 +106,13 @@ const FooterCmp = () => {
 
         </div>
 
-        <div className="border-t border-[#444] mt-4 pt-4 text-sm text-center text-[#999]">
-          <p>
+        <div className="border-t border-[#444] mt-4 pt-4 text-xs text-center text-[#999] leading-tight mb-0 pb-0">
+          <p className="mb-0">
             &copy; {new Date().getFullYear()} KisanMitra. All rights reserved.
           </p>
         </div>
+
+
       </div>
     </footer>
   );
