@@ -50,10 +50,10 @@ const Listcard = ({ item, handleDelete, onselectbid }) => {
   key={bid._id}
   className="flex justify-between items-center bg-[#F5F9F4] border border-[#A8CBB5] p-3 mt-2 rounded-md shadow-sm"
 >
-  <div>
-    <p className="text-sm font-semibold text-[#2A2A2A]">{bid.bname}</p>
-    <p className="text-sm text-[#4A4A4A]">₹ {bid.price}</p>
-  </div>
+   <div>
+        <p className="font-medium">Buyer Name: <span className="font-normal">{bid.bname}</span></p>
+        <p className="font-medium">Offered Price: <span className="font-normal">₹{bid.price}</span></p>
+      </div>
   <button
     className="text-[#4A7C59] hover:text-[#2A2A2A] transition-colors"
     onClick={() => onselectbid(item, bid)}
