@@ -7,7 +7,7 @@ import Register from "./pages/Register.jsx";
 import Fdash from "./pages/Fdash/index.jsx";
 import Bdash from "./pages/Bdash/Dashboard.jsx";
 import NotFound from "./pages/Error.jsx";
-import Helpdesk from "./pages/HelpDesk.jsx";
+import Helpdesk from "./pages/Helpdesk.jsx";
 import Listings from "./pages/Fdash/listings.jsx";
 import Bdetails from "./pages/Bdash/Info.jsx";
 import Marketplace from "./pages/Bdash/marketplace.jsx";
