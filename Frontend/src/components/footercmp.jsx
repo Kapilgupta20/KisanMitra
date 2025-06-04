@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import sproutLogo from '../assets/sprout.svg'; 
+import sproutLogo from '../assets/sprout.svg';
 import { Github, Linkedin } from 'lucide-react';
 
 const teamLinkedInLinks = [
@@ -61,51 +61,40 @@ const FooterCmp = () => {
             </ul>
           </div>
 
-          {/* <div>
-            <h3 className="text-lg font-semibold mb-4 text-[#F1F1F1]">Follow Us</h3>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-[#F1F1F1]">Follow</h3>
+
+            {/* GitHub Icon Link */}
             <div className="flex space-x-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, idx) => (
-                <a key={idx} href="#" className="hover:text-[#A8CBB5] transition-colors text-[#CCCCCC]">
-                  <Icon size={24} />
-                  <span className="sr-only">{Icon.name}</span>
-                </a>
+              <a
+                href="https://github.com/Kapilgupta20/KisanMitra"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#A8CBB5] transition-colors text-[#CCCCCC]"
+              >
+                <Github size={24} />
+                <span className="sr-only">GitHub</span>
+              </a>
+            </div>
+
+            {/* LinkedIn Team Links */}
+            <div className="mt-4 space-y-2 text-sm text-[#CCCCCC]">
+              {teamLinkedInLinks.map((member, idx) => (
+                <div key={idx}>
+                  <a
+                    href={member.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#A8CBB5] transition-colors flex items-center space-x-2"
+                  >
+                    <Linkedin size={16} />
+                    <span>{member.name}</span>
+                  </a>
+                </div>
               ))}
             </div>
-          </div> */}
-
-<div>
-  <h3 className="text-lg font-semibold mb-4 text-[#F1F1F1]">Follow</h3>
-
-  {/* GitHub Icon Link */}
-  <div className="flex space-x-4">
-    <a
-      href="https://github.com/your-username/your-repo"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="hover:text-[#A8CBB5] transition-colors text-[#CCCCCC]"
-    >
-      <Github size={24} />
-      <span className="sr-only">GitHub</span>
-    </a>
-  </div>
-
-  {/* LinkedIn Team Links */}
-  <div className="mt-4 space-y-2 text-sm text-[#CCCCCC]">
-    {teamLinkedInLinks.map((member, idx) => (
-      <div key={idx}>
-        <a
-          href={member.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#A8CBB5] transition-colors flex items-center space-x-2"
-        >
-          <Linkedin size={16} />
-          <span>{member.name}</span>
-        </a>
-      </div>
-    ))}
-  </div>
-</div>
+          </div>
 
         </div>
 
