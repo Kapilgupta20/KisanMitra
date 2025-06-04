@@ -38,9 +38,31 @@ const Listcard = ({ item, handleDelete, onselectbid }) => {
       >
         Delete
       </button>
+
+      {/* Raised Bids Heading */}
+      <h3 className="mt-6 mb-2 text-lg font-semibold text-[#3E6A49]">
+        Raised Bids
+      </h3>
+
       <div>
         {item.bids && item.bids.filter(bid => bid.status === "pending").map((bid) => (
-          <div key={bid._id}>{bid.bname} {bid.price} <button className="cursor-pointer" onClick={() => onselectbid(item, bid)}><CircleChevronRight /></button></div>
+          <div
+  key={bid._id}
+  className="flex justify-between items-center bg-[#F5F9F4] border border-[#A8CBB5] p-3 mt-2 rounded-md shadow-sm"
+>
+   <div>
+        <p className="font-medium">Buyer Name: <span className="font-normal">{bid.bname}</span></p>
+        <p className="font-medium">Offered Price: <span className="font-normal">₹{bid.price}</span></p>
+      </div>
+  <button
+    className="text-[#4A7C59] hover:text-[#2A2A2A] transition-colors"
+    onClick={() => onselectbid(item, bid)}
+  >
+    <CircleChevronRight className="w-5 h-5" />
+  </button>
+</div>
+
+
         ))}
       </div>
     </div>
