@@ -1,7 +1,7 @@
 import React from "react";
 // import { useNavigate } from "react-router-dom";
 import Sidebar from './components/SideBar';
-import Weather from './components/Weathercmp';
+import Weather from './components/weathercmp';
 import Header from "./components/Header";
 import FooterCmp from './components/Footer';
 
