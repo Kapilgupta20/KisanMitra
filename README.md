@@ -16,11 +16,11 @@ Key goals:
 
 * **Farmer Dashboard**
 
-  * View & manage listings, contracts, and chat with buyers
+  * View & manage listings, contracts and chat with buyers
   * Integrated weather widget (WeatherAPI)
 * **Buyer Dashboard**
 
-  * Browse, filter crop listings by location, price, and crop type
+  * Browse, filter crop listings by location, price and crop type
   * Initiate and sign digital contracts
 * **Contracts Module**
 
@@ -41,33 +41,7 @@ Key goals:
 | Frontend       | React.js, Tailwind CSS     |
 | Backend        | Node.js, Express.js        |
 | Database       | MongoDB                    |
-| Realtime       | Firebase Realtime Database |
-| Auth & Hosting | Firebase Auth & Hosting    |
 | APIs           | WeatherAPI, Twilio (SMS)   |
-| Analytics      | Firebase Analytics         |
-
----
-
-## 🎥 Screenshots & UI
-
-> Screenshots are located in the `docs/screenshots/` directory.
-
-### 🔐 Login Screen
-
-![Login Screen](docs/screenshots/login.png)
-
-### 👨‍🌾 Farmer Dashboard
-
-![Farmer Dashboard](docs/screenshots/farmer_dashboard.png)
-
-### 📃 Contract Module
-
-![Contract Module](docs/screenshots/contracts.png)
-
-### 📥 Installation Screens
-
-![Installation Step 1](docs/screenshots/install_step1.png)
-![Installation Step 2](docs/screenshots/install_step2.png)
 
 ---
 
@@ -76,26 +50,26 @@ Key goals:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/KisanMitra.git
+git clone https://github.com/Kapilgupta20/KisanMitra.git
 cd KisanMitra
 ```
 
 ### 2. Set up environment variables
 
-Create a `.env` file in the root:
+Create seperate `.env` files in both the frontend and backend folders
 
 ### 3. Backend setup
 
 ```bash
-cd backend
-npm i
-npm run dev     # Server runs on http://localhost:5000
+cd Backend
+npm install
+npm run dev     # Server runs on http://localhost:8000
 ```
 
 ### 4. Frontend setup
 
 ```bash
-cd frontend
-npm i
-npm run start   # Runs on http://localhost:3000
+cd Frontend
+npm install
+npm run start   # Runs on http://localhost:5173
 ```
